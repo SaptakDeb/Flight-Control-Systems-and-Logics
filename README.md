@@ -29,14 +29,14 @@ A sensorless, receiver-input-only flight control system for a conventional tube-
 - Throttle transitions were smoothed by configured slew-rate limits.
 - Sustained RC-link loss triggered FAILSAFE, commanding zero throttle, preset aileron, neutral elevator and rudder, and retracted flaps.
 ---
+---
+## Tube-Wing Flight Control System with Airspeed and Altitude Protection — `FCS_TW_WD.c`
 
-# Tube-Wing Flight Control System with Airspeed and Altitude Protection — `FCS_TW_WD.c`
-
-## Overview
+### Overview
 
 An enhanced sensor-assisted flight control system for a conventional tube-and-wing RC aircraft, implemented in C99. The controller combines receiver inputs with airspeed and altitude measurements to provide flight-envelope protection, adaptive control authority, and automated responses to potentially unsafe flight conditions. Bank estimation remains dead-reckoned because the system does not use an inertial measurement unit (IMU).
 
-## Features
+### Features
 
 - **Operating modes:** DISARMED, GROUND, NORMAL, HOLD, and FAILSAFE.
 - **Throttle arming interlock:** Requires a valid RC link and idle throttle before arming.
@@ -54,7 +54,7 @@ An enhanced sensor-assisted flight control system for a conventional tube-and-wi
 - **Output slew limiting:** Restricts the rate of change of control surfaces, throttle, and flap commands.
 - **Simulation harness:** Includes a simplified pitch, airspeed, and altitude plant to evaluate controller responses to predefined flight scenarios.
 
-## Simulation Outcomes
+### Simulation Outcomes
 
 The built-in simulation exercises the controller under a sequence of flight conditions:
 
@@ -67,7 +67,7 @@ The built-in simulation exercises the controller under a sequence of flight cond
 
 The controller also computes filtered vertical speed and flight-path angle, schedules control authority according to airspeed, and applies protective corrections before generating servo outputs.
 
-## Default Configuration
+### Default Configuration
 
 | Parameter | Value |
 |---|---:|
