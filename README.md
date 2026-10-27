@@ -16,4 +16,12 @@ Reference: `Flow Chart/FCS_TW_DL-Flow.pdf`
 An enhanced sensor-assisted flight control system for a conventional tube-and-wing RC aircraft, implemented in C99. The controller combines receiver inputs with airspeed and altitude measurements to provide flight-envelope protection, adaptive control authority, and automated responses to potentially unsafe flight conditions. Bank estimation remains dead-reckoned because the system does not use an inertial measurement unit (IMU).
 
 Reference: `Flow Chart/FCS_TW_WD-Flow.pdf`
-
+---
+## Tube-Wing Autonomous Waypoint Navigation Controller — `nav.c`
+ 
+### Overview
+ 
+A GPS-based waypoint navigation controller for a conventional tube-and-wing RC aircraft, implemented in C99. The controller flies the aircraft from point A (the position captured when auto mode is engaged) to point B through up to five intermediate waypoints (C–G), then holds a clockwise orbit over B. Lateral guidance uses L1 path following along each leg, altitude is interpolated linearly between waypoint altitudes, and airspeed is held by a PI throttle loop with climb feed-forward. Low-airspeed envelope scaling, a GPS-loss failsafe and turn coordination are built in. The outputs are normalised surface demands in the same channel space as `FCS_TW_WD.c`, so they can be fed into the existing flight control system as the pilot input and still pass through its airspeed and altitude protection.
+ 
+Reference: `Flow Charts/NAV-Flow.pdf`
+ 
