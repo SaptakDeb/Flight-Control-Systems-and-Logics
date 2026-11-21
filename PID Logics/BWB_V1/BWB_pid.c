@@ -1,5 +1,5 @@
 /*
- * BWB_PID.c -- plain PID flight control for a blended wing body (the predecessor)
+ * BWB_PID.c -- plain PID flight control for a blended wing body
  *
  * Aircraft: 2 elevons, 2 spoilers, flaps, rudder, one throttle.
  * No planner, no neural network: just the loops everything else is built on.
