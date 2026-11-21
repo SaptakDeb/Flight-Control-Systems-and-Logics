@@ -1,0 +1,22 @@
+BWB PID TEST BENCH -- step responses on the BWB plant (BWB_PID.c, gains from bwb_pid_cfg_default)
+
+-- 1-3: inner loops, clean aircraft (no noise, no gusts) --
+roll step 0 -> 20 deg                     rise  0.30 s  overshoot   5.0 %  settle  0.86 s  ss-err  0.02 %   PASS
+pitch step 0 -> 6 deg                     rise  0.34 s  overshoot   3.7 %  settle  0.96 s  ss-err  0.53 %   PASS
+speed step 18 -> 21 m/s                   rise  0.60 s  overshoot   0.5 %  settle  0.86 s  ss-err  0.01 %   PASS
+-- 4: outer loops, heading +60 deg and altitude +30 m together --
+heading step 0 -> 60 deg                  rise  3.36 s  overshoot   0.0 %  settle  6.60 s  ss-err -0.01 %   PASS
+altitude step 100 -> 130 m                rise  6.82 s  overshoot   0.0 %  settle 12.60 s  ss-err -0.05 %   PASS
+-- 5: robustness: sensor noise, gusts, weak and strong aircraft --
+roll 20 deg, weak authority (ka 1.2, ke 1.0), gusty  rise  1.52 s  overshoot  20.8 %  tail error   4.3 % of step            PASS
+pitch 6 deg, weak authority (ka 1.2, ke 1.0), gusty  rise  0.66 s  overshoot  35.7 %  tail error  11.9 % of step            PASS
+roll 20 deg, nominal, gusty (0.5)         rise  0.32 s  overshoot  11.5 %  tail error   2.6 % of step            PASS
+pitch 6 deg, nominal, gusty (0.5)         rise  0.38 s  overshoot  17.5 %  tail error   6.4 % of step            PASS
+roll 20 deg, strong authority, 24 m/s, gusty  rise  0.16 s  overshoot  13.2 %  tail error   2.0 % of step            PASS
+pitch 6 deg, strong authority, 24 m/s, gusty  rise  0.18 s  overshoot   9.8 %  tail error   2.8 % of step            PASS
+-- 6: saturation, roll 30 deg and pitch 14 deg demanded together --
+elevon saturation, pitch priority         peak elevon 1.00 (limit 1.00)  spoiler roll-assist peak 1.00  pitch overshoot 4.1 %   PASS
+-- 7: yaw damper, Dutch-roll excursion after a 30 deg roll step --
+yaw damper reduces Dutch roll             peak sideslip excursion 0.0292 rad (damper off) -> 0.0017 rad (damper on)   PASS
+
+13 of 13 checks passed
