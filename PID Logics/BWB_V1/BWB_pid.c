@@ -15,7 +15,7 @@
  *   eL eR sL sR flaps rudder throttle
  *
  * Built to be extended: every inner-loop gain is multiplied by a slot of the optional
- * array m[PID_NM] (pass NULL for 1.0).  BWB_FCS.c (the neural-scheduled successor) fills
+ * array m[PID_NM] (pass NULL for 1.0).  BWB_FCS.c  fills
  * that array from a network, with the same slot order.
  *
  * Sign conventions: roll + = right wing down, pitch + = nose up, elevon + = trailing edge
@@ -30,7 +30,7 @@
 #include <string.h>
 #include "bwb_plant.h"
 
-/* gain-multiplier slots (same order in the successor).  Slot 4 scales the heading loop. */
+/* gain-multiplier slots .  Slot 4 scales the heading loop. */
 enum { M_ROLL_PI, M_ROLL_D, M_PITCH_PI, M_PITCH_D, M_OUTER, M_SPEED, M_YAW, PID_NM };
 
 typedef struct {
